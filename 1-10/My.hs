@@ -48,5 +48,10 @@ compress' (x:ys@(y:_))
     | otherwise = x : compress' ys
 compress' l = l
 
--- myPack (x:ys@(y:_)) 
---     | x == y = 
+myPack li@(x:xs) = reverse $ foldl fun [[x]] xs
+    where fun acc@(y@(z:zs):ys) el
+            | z == el = (el:y) : ys
+            | otherwise = [el] : acc
+
+encode list = map pack' $ myPack list
+        where pack' li = (length li, head li)
