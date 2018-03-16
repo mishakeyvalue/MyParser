@@ -8,7 +8,6 @@ copyright:           "2018 Author name here"
 
 extra-source-files:
 - README.md
-- ChangeLog.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -25,24 +24,21 @@ dependencies:
 library:
   source-dirs: src
 
-executables:
-  MyParser-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - MyParser
 
 tests:
   MyParser-test:
-    main:                Spec.hs
+    main:                Test.hs
     source-dirs:         test
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - MyParser
+      - HUnit
+      - hedgehog
+      - tasty
+      - tasty-discover
+      - tasty-hedgehog
+      - tasty-hunit
+
+      - MyParser
